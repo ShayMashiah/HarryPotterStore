@@ -18,9 +18,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" ></script>
     <script src="/socket.io/socket.io.js" ></script>
     <script src="https://d3js.org/d3.v5.js" ></script>
-    <audio controls>
-        <audio src="/public/assets/introSong.mp3"></audio>
-      </audio>
     
     <style type="text/css" media="screen, print">
         * {
@@ -28,6 +25,16 @@
             margin: 0;
         }
         
+.main-header {
+    margin-top: 3%;
+}
+
+
+        h1 {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
         html, body {
             height: 100%;
         }
@@ -55,16 +62,19 @@
 
         header {
             text-align: center;
-            margin: 20px;
         }
 
-        table, td, th {  
-            border: 1px solid #ddd;
-            text-align: left;
+        table th, table td {  
+            border: none;
+            padding: 10px;
+
+            background-color: rgba(0, 0, 0, 0.5); 
+            border-radius: 10px; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
         }
     
         table {
-            border-collapse: collapse;
+            border-collapse: separate;
             width: 50%;     
         }
 
@@ -81,21 +91,21 @@
             min-width: 800px;
             max-height: 600px !important;
             overflow-y: auto !important;
-            background: gainsboro !important;                           
+            background: gold!important;
         }       
 
         aside {
-            float: right;
-            background-color: green;
-            padding: 10px;                         
+            background-color: black;
+            
         }
 
         #footer {
             position: fixed;
             left: 0px;
-            bottom: 0px;              
+            top: 0px;              
             width: 100%;
-            background: #007b5e !important;
+            background: #010504 !important;
+            z-index: 9999 !important;; 
         }
         
         #footer h5 {
@@ -192,7 +202,7 @@
         @font-face {
             font-family: 'introFont';
             font-weight: 400;
-            src: url('/fonts/Ovation.ttf');
+            src: url('/fonts/Legendary.ttf');
         }
         h3 {
             font-size: 100px;
@@ -208,41 +218,276 @@
 
         .introWeb{
             font-family: 'introFont';
-            font-size: 50px;
+            font-size: 30px;
 
         }
-
+        
+        .sign-in {
+            font-size: 20px;
+            font-weight: 1000;
+            font-family: 'localFont';
+        }
         form {
             display: flexbox;
             justify-content: center;
         }
 
-    </style>  
+        button, option, input {
+            color:white;
+        }
+        input {
+            margin-right: 10px;
+        }
+
+        .filter-bar {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+.filter-form {
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filter-form > div {
+    flex: 1;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-form select, 
+.filter-form input {
+    width: 100%;
+    padding: 10px;
+    background-color: #1d1d1d;
+    color: rgba(255, 217, 0, 0.623);
+    border: 'none';
+    border-radius: 3px;
+    transition: background 0.3s ease;
+}
+
+.filter-form select:hover, 
+.filter-form input:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+button[type="submit"], 
+button[type="button"] {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button[type="submit"]{
+    background-color: goldenrod;
+}
+
+button[type="submit"]:hover {
+    background-color: gold;
+}
+
+input{
+    color: gold;
+}
+
+div#filter-collection {
+    margin-right: 23px !important;
+    margin-left: 15px !important;
+}
+
+
+input[type="number"] {
+    background-color: #1d1d1d;
+    margin-bottom: 20px !important;
+    border: none;
+}
+
+input[type="number"]:hover {
+    background-color: #0e0e0e;
+}
+
+div.product-card {
+    
+    min-width: calc(25% - 1rem);
+    min-height: 25%;
+}
+
+table[id="shopping_cart"],
+div[id="dialog"] {
+    background-color: gold;
+}
+
+span[id="ui-id-1"] {
+    color: black;
+}
+
+a[href="/login"] {
+    background-color: rgba(212, 0, 0, 0.918)(255, 0, 0);
+}
+
+span.fa-sign-in {
+    margin-top: 30px;
+}
+
+button[control-id="ControlID-6"] {
+    background-color: #a80000;
+}
+
+[type="submit"] {
+    background-color: gold;
+}
+
+[type="submit"]:hover {
+    background-color: goldenrod;
+}
+
+button[value="Edit"],
+button[onclick="this.form.submitted=this.value;"] {
+    background-color: rgb(24, 206, 0);
+
+}
+
+button[value="Edit"]:hover,
+button[onclick="this.form.submitted=this.value;"]:hover {
+    background-color: green;
+
+}
+button[value="Delete"] {
+    background-color: rgb(255, 44, 44);
+
+}
+
+button[value="Delete"]:hover {
+    background-color: rgb(146, 5, 5);
+
+}
+
+select[name="filter_department"] {
+    background-color: #1d1d1d;
+    border: none;
+    border-radius: 3px;
+    margin:15px !important;
+}
+
+select[name="filter_department"]:hover {
+    background-color: #0e0e0e;
+}
+
+select[name="filter_collectionName"] {
+    background-color: #1d1d1d;
+    border: none;
+    border-radius: 3px;
+    margin:15px !important;
+}
+
+select[name="filter_collectionName"]:hover {
+    background-color: #0e0e0e;
+}
+
+td input[type="text"] {
+    background-color: #ffffff00;
+    color: #eeeeee;
+}
+@font-face {
+        font-family: 'NewTo';
+        font-weight: 400;
+        src: url('/fonts/Cinzel.ttf'); 
+    }
+
+    .sign-in {
+        font-size: 20px;
+        font-weight: 1000;
+        font-family: 'NewTo'; 
+    }
+
+    nav.quick-links li {
+        font-family: 'NewTo'; 
+        margin: 20px;
+    }
+
+.cart-modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.cart-modal-content {
+    position: relative;
+    background-color: #000000;
+    margin: 15% auto;
+    padding: 20px;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 100px 100px rgba(255, 255, 255, 0.178) !important;
+
+}
+
+.cart-modal-content p {
+    margin: 20px 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+button.add-to-cart-button:hover {
+    background-color: #775d0a;
+}
+</style>
+
+
+  
 </head>
 <body class="page-wrap" style="overflow-x: hidden; overflow-y:auto;">
   <header>
-    <h3>Harry Potter Shop</h3>     
+    <br/><br/>
+    <h3 class="main-header">Harry Potter Shop</h3>     
     <div class="introWeb">
     Step into a World of Magic at the Harry Potter Store! <br>
     Unveil extraordinary artifacts and enchanting robes that embrace your inner wizard. <br>
     From perfect wands to captivating spellbooks, join us on this spellbinding journey into the heart of fantasy! <br>
 </div>
   </header>
-  <section id="footer" >
-        <footer class="site-footer">         
-            <div class="col text-sm-left text-md-left" style="display: inline-block">
-				<div style="margin: auto;">
-					<nav class="list-unstyled quick-links" >
-						<li style="display: inline-block; margin: 5px"><a href="localhost:4111"><i class="fa fa-angle-double-right"></i>Home</a></li>
-						<li style="display: inline-block; margin: 5px"><a href="javascript:showLocations();"><i class="fa fa-angle-double-right"></i>Locations</a></li>
-						<li style="display: inline-block; margin: 5px"><a href="javascript:showVideo();"><i class="fa fa-angle-double-right"></i>Videos</a></li>
-                        <li style="display: inline-block; margin: 5px"><a href="javascript:void();"><i class="fa fa-facebook"></i></a></li>	
-                        <li><a href="https://www.nationaltransaction.com/">National Transaction Corporation is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</a></li>
-					</nav>
-				</div>				
-			</div>		
-        </footer>
-  </section>
+  <section id="footer">
+    <div="site-footer">
+        <div class="col text-sm-left text-md-left" style="display: inline-block">
+            <div style="margin: auto;">
+                <nav class="list-unstyled quick-links" style="display: flex; justify-content: center; padding-top: 20px; background: black; position:static; z-index: 9999;">
+                    <li style="margin: 20px;">
+                        <a href="/home">
+                            <i class="fa fa-home"></i> 
+                            Home
+                        </a>
+                    </li>
+                    <li style="margin: 20px;"><a href="/where-to-find-us"><i class="fa fa-map-marker"></i>Where to Find Us</a></li>
+                    <li style="margin: 20px;"><a href="/about-us"><i class="fa fa-info-circle"></i>About Us</a></li>
+                    <li style="margin: 20px;"><a href="https://www.facebook.com/profile.php?id=61550798721132"><i class="fa fa-facebook"></i></a></li>
+                    <li style="margin: 20px;"><a href="/login"><i class="fa fa-sign-out"></i>Log Out</a></li>
+                </nav>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
 <script>
   var socket = io() 
 
@@ -270,15 +515,16 @@
                 row.append ( $( '<td id="order_' + i.toString () + '" colspan="4" /> ' ).html ( moment ( result[i]["_id"] ).format ( 'hh:mm a MMM DD YYYY' ) ) )  
                 row.append ( $( '<td><button class="btn btn-login btn-lg" onclick=" deleteOrder ( \'' + fan_id_param + '\', ' + i.toString () + ' ) " > Delete </button></td> ' ) ) 
                 rows.push ( row )
-                for ( k = 0; k < result[i]["records"].length; k = k + 1 )
-                {
-                    row = ( $( '<tr style="font-weight: bold " /> ' ) )
+                row = ( $( '<tr style="font-weight: bold " /> ' ) )
                     row.append ( $( '<td />' ).html ( "Department") ) 
                     row.append ( $( '<td />' ).html ( "Title" ) ) 
                     row.append ( $( '<td />' ).html( "CollectionName" ) ) 
                     row.append ( $( '<td />' ).html ( "Character" ) ) 
                     row.append ( $( '<td />' ).html ( "Price" ) )  // image
-                    rows.push ( row )                   
+                    rows.push ( row )
+                for ( k = 0; k < result[i]["records"].length; k = k + 1 )
+                {
+                                       
                     row = ( $( '<tr />' ) )
                     row.append ( $( '<td />' ).html ( result[i]["records"][k]["department"] ) ) 
                     row.append ( $( '<td />' ).html ( result[i]["records"][k]["title"] ) ) 

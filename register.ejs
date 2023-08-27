@@ -1,9 +1,36 @@
 <%- include('layout.ejs'); %>
+
+<style>
+            @font-face {
+                    font-family: 'NewTo';
+                    font-weight: 400;
+                    src: url('/fonts/Cinzel.ttf');
+            }
+        
+            .sign-in {
+                font-family: 'NewTo';
+                font-size: 30px;
+                color: white;
+            }
+            label{
+                font-family: 'NewTo';
+
+            }
+            .signup-button {
+            text-align: center;
+            margin-top: 20px; 
+            }
+            p{
+                text-align: center;
+            margin-top: 20px; 
+            }
+     </style>
     <section class="col-sm-4 col-sm-offset-3" style="margin: auto;">
         <h1>
-            <span class="fa fa-sign-in"/>
-            Signup
-        </h1>
+            <span class="sign-in">
+            New to the Wizarding World? <br> Join Us Now!
+             </span>
+                </h1>
         
         <% if ( message.length > 0 ) { %>
             <div class="alert alert-danger">
@@ -36,12 +63,13 @@
                 </label>
                 <select class="form-control" name="role">
                     <option value="">Choose role</option>
-                    <option value="provider">Provider</option>
-                    <option value="fan">Fan</option>
+                    <option value="provider">Wizard</option>
+                    <option value="fan">Muggle</option>
                 </select>            
             </div>
-
+            <div class="signup-button">
             <button type="submit" class="btn btn-warning btn-lg">Signup</button>
+            </div>
         </form>
     
         <hr>
